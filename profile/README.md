@@ -22,8 +22,8 @@ The system uses a dual-layer prediction model: a pre-trained **Global XGBoost mo
 
 | Repo | Description | Status |
 |---|---|---|
-| [`datara-android`](../../datara-android) | The main Android app — Kotlin, Jetpack Compose, Supabase backend | 🚧 In development |
-| [`data-harvester`](../../data-harvester) | Standalone Android app used to collect the initial training dataset from real users | ✅ Complete |
+| [`datara-android`](/datara-android) | The main Android app — Kotlin, Jetpack Compose, Supabase backend | 🚧 In development |
+| [`data-harvester`](/data-harvester) | Standalone Android app used to collect the initial training dataset from real users | ✅ Complete |
 | `datara-ml` | Python pipeline for data cleaning, XGBoost training, and model export | 📋 Planned |
 
 ---
@@ -54,4 +54,4 @@ University of Science and Technology of Southern Philippines, Cagayan de Oro Cit
 
 ## Getting Started
 
-Each repo has its own setup instructions in its README. For contribution conventions (branching, commit format, PR process) shared across all repos, see [`CONTRIBUTING.md`](../../datara-android/blob/main/CONTRIBUTING.md) in `datara-android`.
+Each repo has its own setup instructions in its README. For contribution conventions (branching, commit format, PR process) shared across all repos, see [`CONTRIBUTING.md`](/datara-android/blob/main/CONTRIBUTING.md) in `datara-android`.
