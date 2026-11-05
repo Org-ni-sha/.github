@@ -23,7 +23,7 @@ The system uses a dual-layer prediction model: a pre-trained **Global XGBoost mo
 |---|---|---|
 | [`datara-android`](https://github.com/Org-ni-sha/datara-android) | The main Android app — Kotlin, Jetpack Compose, Supabase backend | 🚧 In development |
 | [`data-harvester`](https://github.com/Org-ni-sha/data-harvester) | Standalone Android app used to collect the initial training dataset from real users | ✅ Complete |
-| `datara-ml` | Python pipeline for data cleaning, XGBoost training, and model export | 📋 Planned |
+| [`datara-ml`](https://github.com/Org-ni-sha/datara-ml) | Python pipeline for data cleaning, XGBoost training, and model export | 📋 Planned |
 
 ---
 
