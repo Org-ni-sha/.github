@@ -12,33 +12,42 @@
 
 ## About
 
-Most prepaid mobile users know how much data they have left, but not how fast it's actually disappearing. DATAra predicts a user's **Probable Exhaustion Time (PET)** — when their mobile data will actually run out — by learning from real usage behavior, time-based patterns, and network conditions like signal strength and internet speed, instead of relying on static balance checks and promo expiry dates.
+DATAra forecasts when your mobile data use will reach an amount you choose. You set a quota in MB or GB, the app measures the mobile data this phone actually uses (uploads and downloads, including promo freebies, never Wi-Fi), and it estimates the **PET (predicted time to quota)**: when your usage will reach that quota.
 
-The system uses a dual-layer prediction model: a pre-trained **Global XGBoost model** provides baseline predictions for new users, which is then personalized over time by a **Local model** trained on each user's own consumption history.
+DATAra does not read your carrier balance, does not read SMS, and never blocks or limits your connection. Reaching a quota is information, not a cutoff.
+
+**How the forecast works:**
+
+- A **Global XGBoost model**, trained on data from study participants, predicts how much mobile data you will use in the next hour. It uses time of day and week, your recent hourly usage, and network conditions: signal strength, radio generation (2G–5G) and how much of the time you are on mobile data.
+- The app steps forward hour by hour from your remaining quota until the predicted usage reaches it. That hour is the PET, capped at 30 days.
+- A **local personalization layer** learns from your own hourly prediction errors and corrects the global prediction. The app switches to it after about 7 days, only while it is more accurate than the global model, and switches back when it is not.
+- All prediction runs **on the phone** with ONNX Runtime. No usage data is sent anywhere to get a forecast.
 
 ---
 
 ## Repositories
+
 | Repo | Description | Status |
 |---|---|---|
-| [`datara-android`](https://github.com/Org-ni-sha/datara-android) | The main Android app — Kotlin, Jetpack Compose, Supabase backend | 🚧 In development |
-| [`data-harvester`](https://github.com/Org-ni-sha/data-harvester) | Standalone Android app used to collect the initial training dataset from real users | ✅ Complete |
-| [`datara-ml`](https://github.com/Org-ni-sha/datara-ml) | Python pipeline for data cleaning, XGBoost training, and model export | 📋 Planned |
+| [`datara-android`](https://github.com/Org-ni-sha/datara-android) | The Android app: Kotlin, Jetpack Compose, Room, Supabase. Quota cycles, usage tracking and on-device forecasting are working. | 🚧 In development |
+| [`data-harvester`](https://github.com/Org-ni-sha/data-harvester) | Standalone Android app that collects the training dataset from study participants (v1.6.8) | ✅ Complete · data collection ongoing |
+| [`datara-ml`](https://github.com/Org-ni-sha/datara-ml) | Python pipeline: harvester data cleaning, the model's feature definitions, XGBoost training and ONNX export | 🚧 In development · interim model trained |
 
 ---
 
 ## Tech Stack
 
-- **App:** Kotlin, Jetpack Compose, Room, Hilt, MVVM
-- **Backend:** Supabase (Postgres, Auth, Storage)
-- **ML:** Python, pandas, scikit-learn, XGBoost, ONNX Runtime (on-device inference)
+- **App:** Kotlin, Jetpack Compose (Material 3), MVVM, Hilt, Room, WorkManager, Vico charts
+- **On-device ML:** ONNX Runtime (Android), running the exported XGBoost model
+- **Backend:** Supabase (Postgres with row-level security, Auth, Storage)
+- **ML pipeline:** Python, pandas, NumPy, XGBoost, onnxmltools
 - **Design:** Figma / Google Stitch
 
 ---
 
 ## Team
 
-| Name | 
+| Name |
 |---|
 | Obial, Gilliand M. |
 | Omongos, Charlie C. |
